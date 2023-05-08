@@ -1,11 +1,19 @@
-import './App.scss'
+import React from 'react'
 import ProfileCard from './ProfileCard'
+import styled from 'styled-components'
 
-function App() {
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <ProfileCard id="1" />
-    </div>
+    <Container>
+      <ProfileCard id={1} />
+    </Container>
   )
 }
 

@@ -1,48 +1,81 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { FaUser } from 'react-icons/fa'
+import Tilt from 'react-parallax-tilt'
+import './App.scss'
+
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000'
 
 const Card = styled.div`
-  background-color: #fff;
-  border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  width: 25rem;
+  height: 35rem;
+  position: relative;
+  box-shadow: 0px 30px 60px rgba(0, 0, 0, 0.1), 0px 30px 60px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  background-color: rgba(0, 0, 0, 0.75);
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  padding: 20px;
+  padding: 2rem;
 `
 
-const Avatar = styled(FaUser)`
-  font-size: 48px;
-  color: #555;
+const ProfileImage = styled.img`
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 1px solid #fff;
 `
 
-const Name = styled.h2`
-  font-size: 24px;
-  margin: 10px 0;
+const UserName = styled.h1`
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  color: #fff;
+  margin-top: 1rem;
 `
 
-const Description = styled.p`
-  font-size: 16px;
-  color: #777;
+const UserBio = styled.p`
+  width: calc(100% - 6rem);
+  font-size: 1rem;
+  color: #fff;
   text-align: center;
+  border-radius: 5px;
 `
 
-interface ProfileCardProps {
-  id: string
-}
+const UserEmail = styled.h2`
+  font-size: 1rem;
+  color: #fff;
+  margin-top: 1rem;
+  font-weight: 300;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+`
+
+const Divider = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+`
 
 interface UserData {
   name: string
-  description: string
+  email: string
+  bio: string
+  avatar: string
 }
 
-const API_URL: string = process.env.REACT_APP_API_URL || 'http://localhost:8000'
+interface ProfileCardProps {
+  id: number
+}
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ id }) => {
   const [userData, setUserData] = useState<UserData | null>(null)
-  const [loading, setLoading] = useState<boolean>(true)
-  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,7 +87,6 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ id }) => {
         const data = await response.json()
         setUserData(data)
       } catch (error: any) {
-        console.error('Error fetching user data:', error)
         setError(error.message)
       } finally {
         setLoading(false)
@@ -64,24 +96,35 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ id }) => {
     fetchData()
   }, [id])
 
-  if (loading) {
-    return <div>Loading...</div>
-  }
+  if (loading) return <Card style={{ color: 'white' }}>Loading...</Card>
+  if (error)
+    return <Card style={{ color: 'white' }}>Unable to load user data</Card>
 
-  if (error) {
-    return <div>Error: {error}</div>
-  }
-
-  if (!userData) {
-    return <div>No user data found</div>
-  }
+  if (!userData) return null
 
   return (
-    <Card>
-      <Avatar />
-      <Name>{userData.name}</Name>
-      <Description>{userData.description}</Description>
-    </Card>
+    <Tilt
+      tiltAngleXInitial={0}
+      tiltReverse={true}
+      glareEnable={true}
+      glareMaxOpacity={0.7}
+      glareColor="rgba(255,255,255,0.4)"
+      glarePosition="all"
+      scale={1.1}
+      transitionSpeed={5000}
+      glareBorderRadius="10px"
+      perspective={1000}
+    >
+      <Card>
+        {userData.avatar && (
+          <ProfileImage src={userData.avatar} alt={userData.name} />
+        )}
+        <UserName>{userData.name}</UserName>
+        <Divider />
+        <UserBio>{userData.bio}</UserBio>
+        <UserEmail>{userData.email}</UserEmail>
+      </Card>
+    </Tilt>
   )
 }
 

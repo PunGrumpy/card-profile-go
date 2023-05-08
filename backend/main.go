@@ -12,17 +12,21 @@ import (
 )
 
 type User struct {
-	ID          string `json:"id"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
+	ID     string `json:"id"`
+	Name   string `json:"name"`
+	Email  string `json:"email"`
+	Bio    string `json:"bio"`
+	Avatar string `json:"avatar"`
 }
 
 func getUser(w http.ResponseWriter, r *http.Request) {
 	userID := r.URL.Query().Get("id")
 	user := User{
-		ID:          userID,
-		Name:        "Noppakorn Kaewsalabnil",
-		Description: "Full Stack Developer specializing in Golang, React, Typescript, and SCSS.",
+		ID:     userID,
+		Name:   "Noppakorn Kaewsalabnil",
+		Email:  "portal@gmail.com",
+		Bio:    "I am currently studying computer science at KMITL in Thailand, and my interests revolve around DevOps, Cybersecurity, and Web Development.",
+		Avatar: "https://avatars.githubusercontent.com/u/108584943?v=4",
 	}
 
 	w.Header().Set("Content-Type", "application/json")
