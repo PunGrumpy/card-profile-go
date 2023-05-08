@@ -1,46 +1,92 @@
-# Getting Started with Create React App
+# Project Name 📽️
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A web application built with Golang, React, TypeScript, and SCSS to display user profiles using styled-components and environment variables.
 
-## Available Scripts
+## Technologies
 
-In the project directory, you can run:
+- Backend: Golang, Gorilla Mux, CORS
+- Frontend: React, TypeScript, SCSS, styled-components
+- Package manager: Yarn
 
-### `yarn start`
+## Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Golang (version 1.17 or later)
+- Node.js (version 14 or later)
+- Yarn (version 1.22 or later)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Installation
 
-### `yarn test`
+1. Clone the repository:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+git clone https://github.com/PunGrumpy/card-profile-go
+cd card-profile-go
+```
 
-### `yarn build`
+2. Install dependencies:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   - Frontend:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   yarn install
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   - Backend:
 
-### `yarn eject`
+   ```bash
+   cd backend
+   go mod download
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. Run the application:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   - Frontend:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+   ```bash
+   yarn start
+   ```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+   - Backend:
 
-## Learn More
+   ```bash
+   cd backend
+   go run main.go
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The application will be available at `http://localhost:3000`. and the backend will be available at `http://localhost:8000`.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Configuration ⚙️
+
+## Backend
+
+Create a `.env` file in the `backend` directory with the following content:
+
+```env
+ALLOWED_ORIGINS=http://localhost:8000
+```
+
+Replace `http://localhost:8000` with the actual origin you want to allow.
+
+## Frontend
+
+Create a `.env` file in the root directory with the following content:
+
+```env
+REACT_APP_API_URL=http://localhost:3000
+```
+
+Replace `http://localhost:3000` with the actual URL of the backend API.
+
+# License 📜
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+# Acknowledgements 🙏
+
+- [Goriila Mux](https://pkg.go.dev/github.com/gorilla/mux)
+- [CORS](https://pkg.go.dev/github.com/rs/cors)
+- [GoDotEnv](https://pkg.go.dev/github.com/joho/godotenv)
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [SCSS](https://sass-lang.com/)
+- [styled-components](https://styled-components.com/)
