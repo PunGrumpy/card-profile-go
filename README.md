@@ -62,20 +62,21 @@ The application will be available at `http://localhost:3000`. and the backend wi
 Create a `.env` file in the `backend` directory with the following content:
 
 ```env
-ALLOWED_ORIGINS=http://localhost:8000
+ALLOWED_ORIGINS=http://localhost:3000
+PORT=8000
 ```
 
-Replace `http://localhost:8000` with the actual origin you want to allow.
+Replace `http://localhost:3000` with the actual origin you want to allow. Replace `8000` with the actual port you want to use.
 
 ## Frontend
 
 Create a `.env` file in the root directory with the following content:
 
 ```env
-REACT_APP_API_URL=http://localhost:3000
+REACT_APP_API_URL=http://localhost:8000
 ```
 
-Replace `http://localhost:3000` with the actual URL of the backend API.
+Replace `http://localhost:8000` with the actual URL of the backend API.
 
 # License 📜
 

@@ -39,6 +39,11 @@ func main() {
 		log.Fatal("ALLOWED_ORIGINS is not set in .env file")
 	}
 
+	port, ok := os.LookupEnv("PORT")
+	if !ok {
+		log.Fatal("PORT is not set in .env file")
+	}
+
 	r := mux.NewRouter()
 
 	r.HandleFunc("/api/user", getUser).Methods("GET")
@@ -50,5 +55,5 @@ func main() {
 	})
 
 	handler := corsOptions.Handler(r)
-	log.Fatal(http.ListenAndServe(":8000", handler))
+	log.Fatal(http.ListenAndServe(":"+port, handler))
 }
