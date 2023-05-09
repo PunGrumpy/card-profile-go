@@ -80,18 +80,12 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ id }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // const response = await fetch(`${API_URL}/api/user?id=${id}`)
-        // if (!response.ok) {
-        //   throw new Error('Failed to fetch user data')
-        // }
-        // const data = await response.json()
-        // setUserData(data)
-        setUserData({
-          name: 'Noppakorn Kaewsalabnil',
-          email: 'portal@gmail.com',
-          bio: 'I am currently studying computer science at KMITL in Thailand, and my interests revolve around DevOps, Cybersecurity, and Web Development.',
-          avatar: 'https://avatars.githubusercontent.com/u/108584943?v=4'
-        })
+        const response = await fetch(`${API_URL}/api/user?id=${id}`)
+        if (!response.ok) {
+          throw new Error('Failed to fetch user data')
+        }
+        const data = await response.json()
+        setUserData(data)
       } catch (error: any) {
         setError(error.message)
       } finally {
