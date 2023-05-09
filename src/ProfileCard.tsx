@@ -97,8 +97,14 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ id }) => {
   }, [id])
 
   if (loading) return <Card style={{ color: 'white' }}>Loading...</Card>
-  if (error)
-    return <Card style={{ color: 'white' }}>Unable to load user data</Card>
+  if (error) {
+    setUserData({
+      name: 'Noppakorn Kaewsalabnil',
+      email: 'portal@gmail.com',
+      bio: 'I am currently studying computer science at KMITL in Thailand, and my interests revolve around DevOps, Cybersecurity, and Web Development.',
+      avatar: 'https://avatars.githubusercontent.com/u/108584943?v=4'
+    })
+  }
 
   if (!userData) return null
 
