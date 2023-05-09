@@ -34,7 +34,10 @@ func getUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	isDocker, _ := os.LookupEnv("DOCKER_ENV")
+	isDocker, ok := os.LookupEnv("DOCKER_ENV")
+	if !ok {
+		log.Fatal("DOCKER_ENV cannot be found")
+	}
 	if isDocker != "true" {
 		if err := godotenv.Load(); err != nil {
 			log.Fatal("Error loading .env file")
