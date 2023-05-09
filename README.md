@@ -62,7 +62,6 @@ The application will be available at `http://localhost:3000`. and the backend wi
 Create a `.env` file in the `backend` directory with the following content:
 
 ```env
-ALLOWED_ORIGINS=http://localhost:3000
 PORT=8000
 ```
 
@@ -77,6 +76,36 @@ REACT_APP_API_URL=http://localhost:8000
 ```
 
 Replace `http://localhost:8000` with the actual URL of the backend API.
+
+# Docker 🐳
+
+## Backend
+
+1. Build the image:
+
+```bash
+docker compose up --build
+```
+
+2. Run the container:
+
+```bash
+docker compose up -d
+```
+
+## Frontend
+
+1. Build the image:
+
+```bash
+docker build -t card-profile-go .
+```
+
+2. Run the container:
+
+```bash
+docker run -d -p 3000:3000 card-profile-go
+```
 
 # License 📜
 
