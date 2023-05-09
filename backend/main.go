@@ -54,5 +54,9 @@ func main() {
 	r.HandleFunc("/api/user", getUser).Methods("GET")
 
 	handler := cors.Default().Handler(r)
-	log.Fatal(http.ListenAndServe(":"+port, handler))
+
+	certFile := "/certs/certificate.crt"
+	keyFile := "/certs/certificate.key"
+
+	log.Fatal(http.ListenAndServeTLS(":"+port, certFile, keyFile, handler))
 }
