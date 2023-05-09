@@ -1,4 +1,4 @@
-FROM golang:latest-alpine as builder
+FROM golang:1.20.4-alpine3.17 as builder
 WORKDIR /backend
 COPY . .
 RUN apk add -u -t build-tools curl git && \
