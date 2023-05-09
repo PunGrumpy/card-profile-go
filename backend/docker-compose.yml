@@ -9,4 +9,4 @@ services:
     ports:
       - ${PORT}:${PORT}
     volumes:
-      - .:/app
+      - .:/backend
