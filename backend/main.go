@@ -44,11 +44,6 @@ func main() {
 		}
 	}
 
-	allowdOrigins, ok := os.LookupEnv("ALLOWED_ORIGINS")
-	if !ok {
-		log.Fatal("ALLOWED_ORIGINS is not set in .env file")
-	}
-
 	port, ok := os.LookupEnv("PORT")
 	if !ok {
 		log.Fatal("PORT is not set in .env file")
@@ -58,12 +53,6 @@ func main() {
 
 	r.HandleFunc("/api/user", getUser).Methods("GET")
 
-	corsOptions := cors.New(cors.Options{
-		AllowedOrigins: []string{allowdOrigins},
-		AllowedMethods: []string{"GET"},
-		AllowedHeaders: []string{"Content-Type"},
-	})
-
-	handler := corsOptions.Handler(r)
+	handler := cors.Default().Handler(r)
 	log.Fatal(http.ListenAndServe(":"+port, handler))
 }

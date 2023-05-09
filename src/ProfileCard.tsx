@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Tilt from 'react-parallax-tilt'
 import './App.scss'
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000'
+const API_URL = process.env.REACT_APP_API_URL
 
 const Card = styled.div`
   width: 25rem;
