@@ -34,8 +34,11 @@ func getUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	if err := godotenv.Load(); err != nil {
-		log.Fatal("Error loading .env file")
+	isDocker, _ := os.LookupEnv("DOCKER_ENV")
+	if isDocker != "true" {
+		if err := godotenv.Load(); err != nil {
+			log.Fatal("Error loading .env file")
+		}
 	}
 
 	allowdOrigins, ok := os.LookupEnv("ALLOWED_ORIGINS")
