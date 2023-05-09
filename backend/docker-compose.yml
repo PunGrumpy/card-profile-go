@@ -3,8 +3,6 @@ services:
   api:
     container_name: card-profile-go-api
     restart: always
-    environment:
-      - DOCKER_ENV = "true"
     build:
       context: .
       dockerfile: Dockerfile

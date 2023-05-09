@@ -10,4 +10,5 @@ FROM alpine:latest
 RUN apk --no-cache add ca-certificates
 WORKDIR /app
 COPY --from=builder /backend/api .
+ENV DOCKER_ENV="true"
 ENTRYPOINT ["./api"]
